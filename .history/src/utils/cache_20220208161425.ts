@@ -1,0 +1,3 @@
+class LocalCatch {
+  setcatch() {}
+}
