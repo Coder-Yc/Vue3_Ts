@@ -1,0 +1,80 @@
+<template>
+  <div class="login_panel">
+    <h1>后台管理系统</h1>
+    <el-tabs type="border-card" stretch v-model="currentname">
+      <el-tab-pane name="account">
+        <template #label>
+          <span> <i class="el-icon-user-solid"></i>账号登陆 </span>
+        </template>
+        <login-account ref="accountRef" />
+      </el-tab-pane>
+      <el-tab-pane name="phone">
+        <template #label>
+          <span> <i class="el-icon-mobile-phone"></i>手机号登陆 </span>
+        </template>
+        <loginPhone />
+      </el-tab-pane>
+    </el-tabs>
+    <div class="check">
+      <el-checkbox
+        v-model="isKeepPassword"
+        label="记住密码"
+        size="large"
+      ></el-checkbox>
+      <el-link type="primary">忘记密码</el-link>
+    </div>
+
+    <el-button
+      type="primary"
+      size="large"
+      class="submit_button"
+      @click="loginButton"
+      >提交</el-button
+    >
+  </div>
+</template>
+
+<script lang="ts">
+import { defineComponent, ref } from "vue";
+import loginAccount from "./login-account.vue";
+import loginPhone from "./login-phone.vue";
+
+export default defineComponent({
+  components: {
+    loginAccount,
+    loginPhone,
+  },
+  setup() {
+    //定义属性
+    const isKeepPassword = ref(false);
+    const accountRef = ref<InstanceType<typeof loginAccount>>();
+    const phoneRef = ref<InstanceType<typeof loginPhone>>();
+    const currentname = ref<string>("account");
+
+    //定义方法
+    const loginButton = () => {
+      if (currentname.value === "account") {
+        accountRef.value?.loginLog(isKeepPassword.value);
+      } else {
+      }
+    };
+
+    return { isKeepPassword, loginButton, accountRef, phoneRef, currentname };
+  },
+});
+</script>
+
+<style scoped>
+.login_panel {
+  width: 320px;
+}
+.check {
+  margin-top: 5px;
+  display: flex;
+  justify-content: space-between;
+}
+.submit_button {
+  width: 100%;
+  margin-top: 10px;
+}
+</style>
