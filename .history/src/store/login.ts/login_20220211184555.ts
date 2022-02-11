@@ -52,7 +52,6 @@ const loginMoudle: Module<IloginState, IRootState> = {
       commit("changeMs", userM.data);
       LocalCatch.setcatch("userMeun", userM.data);
     },
-
     // phoneLoginAction({ commit }, payload: any) {
     //   console.log("执行了phoneLoginAction函数", payload);
     // },

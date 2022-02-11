@@ -31,7 +31,7 @@ const loginMoudle: Module<IloginState, IRootState> = {
       state.userInfo = userInfo;
     },
     changeMs: (state, UserMs) => {
-      state.userM = UserMs;
+      state.userInfo = UserMs;
     },
   },
   actions: {
@@ -43,16 +43,11 @@ const loginMoudle: Module<IloginState, IRootState> = {
       LocalCatch.setcatch("token", token);
       //userInfo
       const { data } = await accountInfo(id);
-      commit("changeInfo", data);
       LocalCatch.setcatch("userInfo", data);
       //userMeun
       const userM = await userMeuns(data.id);
-      console.log(userM.data);
-
-      commit("changeMs", userM.data);
       LocalCatch.setcatch("userMeun", userM.data);
     },
-
     // phoneLoginAction({ commit }, payload: any) {
     //   console.log("执行了phoneLoginAction函数", payload);
     // },

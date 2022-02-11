@@ -22,9 +22,3 @@ export function accountInfo(id: number) {
     url: "/users/" + id,
   });
 }
-
-export function userMeuns(id: number) {
-  return ycrequest.get<IDatatype>({
-    url: "/role/" + id + "/menu",
-  });
-}

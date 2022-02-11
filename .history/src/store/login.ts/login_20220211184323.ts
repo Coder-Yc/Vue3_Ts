@@ -47,12 +47,9 @@ const loginMoudle: Module<IloginState, IRootState> = {
       LocalCatch.setcatch("userInfo", data);
       //userMeun
       const userM = await userMeuns(data.id);
-      console.log(userM.data);
-
-      commit("changeMs", userM.data);
+      commit("changeMs", userM);
       LocalCatch.setcatch("userMeun", userM.data);
     },
-
     // phoneLoginAction({ commit }, payload: any) {
     //   console.log("执行了phoneLoginAction函数", payload);
     // },

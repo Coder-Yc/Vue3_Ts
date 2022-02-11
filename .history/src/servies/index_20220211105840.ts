@@ -7,13 +7,7 @@ const ycrequest = new YcRequest({
   interceptors: {
     requestInterceptor: (config) => {
       const token = LocalCatch.getcatch("token");
-      if (token) {
-        config.headers!.Authorization = `Bearer ${token}`;
-      }
-      const userInfo = LocalCatch.getcatch("userInfo");
-      if (userInfo) {
-        config.headers!.userInfo = userInfo;
-      }
+      config.headers!.Authorization = `Bearer ${token}`;
       return config;
     },
     requestInterceptorCatch: (err) => {

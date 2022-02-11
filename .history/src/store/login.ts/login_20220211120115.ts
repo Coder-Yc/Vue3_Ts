@@ -1,16 +1,11 @@
 import { IRootState } from "../index";
 import { Module } from "vuex";
-import {
-  accountLogin,
-  accountInfo,
-  userMeuns,
-} from "../../servies/login/login";
+import { accountLogin, accountInfo, userMeuns } from "../../servies/login/login";
 import LocalCatch from "../../utils/cache";
 
 interface IloginState {
   token: string;
   userInfo: any;
-  userM: any;
 }
 
 const loginMoudle: Module<IloginState, IRootState> = {
@@ -19,19 +14,12 @@ const loginMoudle: Module<IloginState, IRootState> = {
     return {
       token: "",
       userInfo: "",
-      userM: "",
     };
   },
 
   mutations: {
     changeToken: (state, Gettoken) => {
       state.token = Gettoken;
-    },
-    changeInfo: (state, userInfo) => {
-      state.userInfo = userInfo;
-    },
-    changeMs: (state, UserMs) => {
-      state.userM = UserMs;
     },
   },
   actions: {
@@ -43,19 +31,13 @@ const loginMoudle: Module<IloginState, IRootState> = {
       LocalCatch.setcatch("token", token);
       //userInfo
       const { data } = await accountInfo(id);
-      commit("changeInfo", data);
       LocalCatch.setcatch("userInfo", data);
       //userMeun
-      const userM = await userMeuns(data.id);
-      console.log(userM.data);
-
-      commit("changeMs", userM.data);
-      LocalCatch.setcatch("userMeun", userM.data);
+      const result = await
     },
-
-    // phoneLoginAction({ commit }, payload: any) {
-    //   console.log("执行了phoneLoginAction函数", payload);
-    // },
+    phoneLoginAction({ commit }, payload: any) {
+      console.log("执行了phoneLoginAction函数", payload);
+    },
   },
 };
 

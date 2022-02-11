@@ -25,6 +25,6 @@ export function accountInfo(id: number) {
 
 export function userMeuns(id: number) {
   return ycrequest.get<IDatatype>({
-    url: "/role/" + id + "/menu",
+    url: "role" + id + "menu",
   });
 }

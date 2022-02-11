@@ -10,10 +10,6 @@ const ycrequest = new YcRequest({
       if (token) {
         config.headers!.Authorization = `Bearer ${token}`;
       }
-      const userInfo = LocalCatch.getcatch("userInfo");
-      if (userInfo) {
-        config.headers!.userInfo = userInfo;
-      }
       return config;
     },
     requestInterceptorCatch: (err) => {
