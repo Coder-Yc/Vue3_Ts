@@ -1,0 +1,18 @@
+<template>
+  <div class="head">
+    <i :class="isFodle"></i>
+  </div>
+</template>
+
+<script lang="ts">
+import { defineComponent } from "vue";
+
+export default defineComponent({
+  setup() {
+    const isFodle = true;
+    return { isFodle };
+  },
+});
+</script>
+
+<style scoped></style>

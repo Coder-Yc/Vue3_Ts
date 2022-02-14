@@ -8,7 +8,7 @@ import "./assets/css/index.less";
 import { getStoreInfo } from "./store/index";
 
 const app = createApp(App);
-// console.log(store);
+console.log(store);
 
 Rootgloble(app);
 app.use(router);

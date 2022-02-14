@@ -4,27 +4,21 @@
       <img class="img" src="../../../assets/imgs/logo.svg" alt="logo" />
       <span class="title">Vue3+TS</span>
     </div>
-    <el-menu
-      active-text-color="#ffd04b"
-      background-color="#545c64"
-      default-active="1"
-      text-color="#fff"
-      :collapse="collapse"
-    >
+    <el-menu>
       <template v-for="item in value" :key="item.id">
         <template v-if="item.type === 1">
-          <el-submenu :index="item.id + ''">
+          <el-sub-menu :index="item.id + ''">
             <template #title>
-              <i :class="item.icon"></i>
+              <i v-if="item.icon" :class="item.icon"></i>
               <span>{{ item.name }}</span>
             </template>
+
             <template v-for="children in item.children" :key="children.id">
-              <el-menu-item :index="children.id + ''">
-                <i v-if="children.icon"></i>
-                <span>{{ children.name }}</span>
-              </el-menu-item>
+              <el-menu-item :index="children.id">{{
+                children.name
+              }}</el-menu-item>
             </template>
-          </el-submenu>
+          </el-sub-menu>
         </template>
         <template v-else-if="item.type === 2">
           <el-menu-item :index="item.id + ''">
@@ -38,30 +32,28 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed, ref } from "vue";
+import { defineComponent, computed } from "vue";
 import { useStore } from "vuex";
 export default defineComponent({
-  props: {
-    collapse: {
-      type: Boolean,
-      default: true,
-    },
-  },
   setup() {
     const store = useStore();
 
     const { value } = computed(() => {
       return store.state.login.userM;
     });
-    const iscollapse = ref(false);
+    console.log(value);
 
-    return { value, iscollapse };
+    return { value };
   },
 });
 </script>
 
 <style scoped lang="less">
-.logo {
+.nav-menu {
+  height: 100%;
+  background-color: #001529;
+
+  .logo {
   display: flex;
   height: 28px;
   padding: 12px 10px 8px 10px;
@@ -79,5 +71,41 @@ export default defineComponent({
     font-weight: 700;
     color: white;
   }
+}
+
+  }
+
+  .el-menu {
+    border-right: none;
+  }
+
+  // 目录
+  .el-submenu {
+    background-color: #001529 !important;
+    // 二级菜单 ( 默认背景 )
+    .el-menu-item {
+      padding-left: 50px !important;
+      background-color: #0c2135 !important;
+    }
+  }
+
+  ::v-deep .el-submenu__title {
+    background-color: #001529 !important;
+  }
+
+  // hover 高亮
+  .el-menu-item:hover {
+    color: #fff !important; // 菜单
+  }
+
+  .el-menu-item.is-active {
+    color: #fff !important;
+    background-color: #0a60bd !important;
+  }
+}
+
+.el-menu-vertical:not(.el-menu--collapse) {
+  width: 100%;
+  height: calc(100% - 48px);
 }
 </style>

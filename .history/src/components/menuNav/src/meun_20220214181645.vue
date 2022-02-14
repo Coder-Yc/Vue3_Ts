@@ -9,7 +9,7 @@
       background-color="#545c64"
       default-active="1"
       text-color="#fff"
-      :collapse="collapse"
+      :collapse="iscollapse"
     >
       <template v-for="item in value" :key="item.id">
         <template v-if="item.type === 1">
@@ -43,8 +43,7 @@ import { useStore } from "vuex";
 export default defineComponent({
   props: {
     collapse: {
-      type: Boolean,
-      default: true,
+      de,
     },
   },
   setup() {

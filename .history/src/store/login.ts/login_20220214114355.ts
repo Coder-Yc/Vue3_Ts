@@ -19,7 +19,7 @@ const loginMoudle: Module<IloginState, IRootState> = {
     return {
       token: "",
       userInfo: "",
-      userM: [],
+      userM: 【,
     };
   },
 

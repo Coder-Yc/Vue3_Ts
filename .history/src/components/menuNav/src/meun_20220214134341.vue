@@ -4,58 +4,35 @@
       <img class="img" src="../../../assets/imgs/logo.svg" alt="logo" />
       <span class="title">Vue3+TS</span>
     </div>
-    <el-menu
-      active-text-color="#ffd04b"
-      background-color="#545c64"
-      default-active="1"
-      text-color="#fff"
-      :collapse="collapse"
-    >
+    <el-menu>
       <template v-for="item in value" :key="item.id">
         <template v-if="item.type === 1">
-          <el-submenu :index="item.id + ''">
+          <el-sub-menu :index="item.id + ''">
             <template #title>
-              <i :class="item.icon"></i>
+              <i class="el-icon-s-operation"></i>
               <span>{{ item.name }}</span>
             </template>
-            <template v-for="children in item.children" :key="children.id">
-              <el-menu-item :index="children.id + ''">
-                <i v-if="children.icon"></i>
-                <span>{{ children.name }}</span>
-              </el-menu-item>
-            </template>
-          </el-submenu>
+          </el-sub-menu>
         </template>
-        <template v-else-if="item.type === 2">
-          <el-menu-item :index="item.id + ''">
-            <i v-if="item.icon" :class="item.icon"></i>
-            <span>{{ item.name }}</span>
-          </el-menu-item>
-        </template>
+        <template v-else-if="item.type === 2"> </template>
       </template>
     </el-menu>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, computed, ref } from "vue";
+import { defineComponent, computed } from "vue";
 import { useStore } from "vuex";
 export default defineComponent({
-  props: {
-    collapse: {
-      type: Boolean,
-      default: true,
-    },
-  },
   setup() {
     const store = useStore();
 
     const { value } = computed(() => {
       return store.state.login.userM;
     });
-    const iscollapse = ref(false);
+    console.log(value);
 
-    return { value, iscollapse };
+    return { value };
   },
 });
 </script>

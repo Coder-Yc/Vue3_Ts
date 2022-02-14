@@ -7,17 +7,19 @@
     <el-menu
       active-text-color="#ffd04b"
       background-color="#545c64"
-      default-active="1"
+      class="el-menu-vertical-demo"
+      default-active="2"
       text-color="#fff"
-      :collapse="collapse"
     >
       <template v-for="item in value" :key="item.id">
         <template v-if="item.type === 1">
+          <div>{{ item.id }}</div>
           <el-submenu :index="item.id + ''">
             <template #title>
-              <i :class="item.icon"></i>
+              <i v-if="item.icon"></i>
               <span>{{ item.name }}</span>
             </template>
+
             <template v-for="children in item.children" :key="children.id">
               <el-menu-item :index="children.id + ''">
                 <i v-if="children.icon"></i>
@@ -38,24 +40,18 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed, ref } from "vue";
+import { defineComponent, computed } from "vue";
 import { useStore } from "vuex";
 export default defineComponent({
-  props: {
-    collapse: {
-      type: Boolean,
-      default: true,
-    },
-  },
   setup() {
     const store = useStore();
 
     const { value } = computed(() => {
       return store.state.login.userM;
     });
-    const iscollapse = ref(false);
+    console.log(value);
 
-    return { value, iscollapse };
+    return { value };
   },
 });
 </script>

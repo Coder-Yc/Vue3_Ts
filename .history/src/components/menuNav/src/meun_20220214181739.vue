@@ -44,7 +44,7 @@ export default defineComponent({
   props: {
     collapse: {
       type: Boolean,
-      default: true,
+      default: false,
     },
   },
   setup() {

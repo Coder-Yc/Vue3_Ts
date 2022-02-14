@@ -5,9 +5,7 @@
         <meunNav />
       </el-aside>
       <el-container>
-        <el-header>
-          <headNav />
-        </el-header>
+        <el-header>Header</el-header>
         <el-main>Main</el-main>
       </el-container>
     </el-container>
@@ -17,11 +15,9 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import meunNav from "../../components/menuNav/index";
-import headNav from "../../components/headNav/index";
 export default defineComponent({
   components: {
     meunNav,
-    headNav,
   },
   setup() {
     return {};
