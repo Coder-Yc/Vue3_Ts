@@ -26,7 +26,7 @@ export default defineComponent({
   setup() {
     const iscollapse = ref();
     const changefold = (foldValue: boolean) => {
-      iscollapse.value = foldValue;
+      iscollapse.value = !foldValue;
     };
     return { changefold, iscollapse };
   },

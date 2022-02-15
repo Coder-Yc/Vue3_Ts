@@ -18,6 +18,8 @@ export default defineComponent({
       isFodleIcon.value = !isFodleIcon.value;
       emit("foldchange", isFodleIcon.value);
     };
+    // console.log(isFodleIcon);
+
     return { isFodleIcon, clickFoldIcon };
   },
 });

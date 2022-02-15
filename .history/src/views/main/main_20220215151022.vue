@@ -2,7 +2,7 @@
   <div class="main">
     <el-container>
       <el-aside :width="iscollapse ? '60px' : '200px'">
-        <meunNav :collapse="iscollapse" />
+        <meunNav :collapse="" />
       </el-aside>
       <el-container>
         <el-header>

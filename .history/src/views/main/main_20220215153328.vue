@@ -1,7 +1,7 @@
 <template>
   <div class="main">
     <el-container>
-      <el-aside :width="iscollapse ? '60px' : '200px'">
+      <el-aside width="200px">
         <meunNav :collapse="iscollapse" />
       </el-aside>
       <el-container>

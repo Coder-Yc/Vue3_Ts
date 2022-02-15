@@ -1,7 +1,7 @@
 <template>
   <div class="main">
     <el-container>
-      <el-aside :width="iscollapse ? '60px' : '200px'">
+      <el-aside :width="iscollapse ? '200px' : '60px'">
         <meunNav :collapse="iscollapse" />
       </el-aside>
       <el-container>
@@ -26,7 +26,7 @@ export default defineComponent({
   setup() {
     const iscollapse = ref();
     const changefold = (foldValue: boolean) => {
-      iscollapse.value = foldValue;
+      iscollapse.value = !foldValue;
     };
     return { changefold, iscollapse };
   },

@@ -59,10 +59,6 @@ export default defineComponent({
 </script>
 
 <style scoped lang="less">
-.nav-menu {
-  height: 100%;
-  background-color: #001529;
-}
 .el-menu {
   border-right: none;
 }

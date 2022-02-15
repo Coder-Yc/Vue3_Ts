@@ -2,7 +2,7 @@
   <div class="meun">
     <div class="logo">
       <img class="img" src="../../../assets/imgs/logo.svg" alt="logo" />
-      <span v-if="!collapse" class="title">Vue3+TS</span>
+      <span v-if="collapse" class="title">Vue3+TS</span>
     </div>
     <el-menu
       active-text-color="#ffd04b"
@@ -10,7 +10,6 @@
       default-active="1"
       text-color="#fff"
       :collapse="collapse"
-      class="el-menu"
     >
       <template v-for="item in value" :key="item.id">
         <template v-if="item.type === 1">
@@ -39,7 +38,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed } from "vue";
+import { defineComponent, computed, ref } from "vue";
 import { useStore } from "vuex";
 export default defineComponent({
   props: {
@@ -48,24 +47,21 @@ export default defineComponent({
       default: false,
     },
   },
-  setup() {
+  setup(props) {
     const store = useStore();
+
     const { value } = computed(() => {
       return store.state.login.userM;
     });
-    return { value };
+    const iscollapse = ref(!props.collapse);
+    console.log(iscollapse);
+
+    return { value, iscollapse };
   },
 });
 </script>
 
 <style scoped lang="less">
-.nav-menu {
-  height: 100%;
-  background-color: #001529;
-}
-.el-menu {
-  border-right: none;
-}
 .logo {
   display: flex;
   height: 28px;
@@ -84,32 +80,5 @@ export default defineComponent({
     font-weight: 700;
     color: white;
   }
-}
-.el-submenu {
-  background-color: #001529 !important;
-  // 二级菜单 ( 默认背景 )
-  .el-menu-item {
-    padding-left: 50px !important;
-    background-color: #0c2135 !important;
-  }
-}
-
-::v-deep .el-submenu__title {
-  background-color: #001529 !important;
-}
-
-// hover 高亮
-.el-menu-item:hover {
-  color: #fff !important; // 菜单
-}
-
-.el-menu-item.is-active {
-  color: #fff !important;
-  background-color: #0a60bd !important;
-}
-
-.el-menu-vertical:not(.el-menu--collapse) {
-  width: 100%;
-  height: calc(100% - 48px);
 }
 </style>

@@ -59,10 +59,6 @@ export default defineComponent({
 </script>
 
 <style scoped lang="less">
-.nav-menu {
-  height: 100%;
-  background-color: #001529;
-}
 .el-menu {
   border-right: none;
 }
@@ -85,13 +81,12 @@ export default defineComponent({
     color: white;
   }
 }
-.el-submenu {
-  background-color: #001529 !important;
-  // 二级菜单 ( 默认背景 )
-  .el-menu-item {
-    padding-left: 50px !important;
-    background-color: #0c2135 !important;
-  }
+
+background-color: #001529 !important;
+// 二级菜单 ( 默认背景 )
+.el-menu-item {
+  padding-left: 50px !important;
+  background-color: #0c2135 !important;
 }
 
 ::v-deep .el-submenu__title {

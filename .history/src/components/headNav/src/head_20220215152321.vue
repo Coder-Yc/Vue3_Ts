@@ -16,6 +16,8 @@ export default defineComponent({
     const isFodleIcon = ref();
     const clickFoldIcon = () => {
       isFodleIcon.value = !isFodleIcon.value;
+      console.log(isFodleIcon.value);
+
       emit("foldchange", isFodleIcon.value);
     };
     return { isFodleIcon, clickFoldIcon };

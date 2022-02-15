@@ -10,7 +10,6 @@
       default-active="1"
       text-color="#fff"
       :collapse="collapse"
-      class="el-menu"
     >
       <template v-for="item in value" :key="item.id">
         <template v-if="item.type === 1">
@@ -59,13 +58,6 @@ export default defineComponent({
 </script>
 
 <style scoped lang="less">
-.nav-menu {
-  height: 100%;
-  background-color: #001529;
-}
-.el-menu {
-  border-right: none;
-}
 .logo {
   display: flex;
   height: 28px;
@@ -84,32 +76,5 @@ export default defineComponent({
     font-weight: 700;
     color: white;
   }
-}
-.el-submenu {
-  background-color: #001529 !important;
-  // 二级菜单 ( 默认背景 )
-  .el-menu-item {
-    padding-left: 50px !important;
-    background-color: #0c2135 !important;
-  }
-}
-
-::v-deep .el-submenu__title {
-  background-color: #001529 !important;
-}
-
-// hover 高亮
-.el-menu-item:hover {
-  color: #fff !important; // 菜单
-}
-
-.el-menu-item.is-active {
-  color: #fff !important;
-  background-color: #0a60bd !important;
-}
-
-.el-menu-vertical:not(.el-menu--collapse) {
-  width: 100%;
-  height: calc(100% - 48px);
 }
 </style>

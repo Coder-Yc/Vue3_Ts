@@ -1,12 +1,12 @@
 <template>
   <div class="main">
     <el-container>
-      <el-aside :width="iscollapse ? '60px' : '200px'">
-        <meunNav :collapse="iscollapse" />
+      <el-aside width="200px">
+        <meunNav />
       </el-aside>
       <el-container>
         <el-header>
-          <headNav @foldchange="changefold" />
+          <headNav @foldchange="" />
         </el-header>
         <el-main>Main</el-main>
       </el-container>
@@ -15,7 +15,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from "vue";
+import { defineComponent } from "vue";
 import meunNav from "../../components/menuNav/index";
 import headNav from "../../components/headNav/index";
 export default defineComponent({
@@ -24,11 +24,7 @@ export default defineComponent({
     headNav,
   },
   setup() {
-    const iscollapse = ref();
-    const changefold = (foldValue: boolean) => {
-      iscollapse.value = foldValue;
-    };
-    return { changefold, iscollapse };
+    return {};
   },
 });
 </script>
