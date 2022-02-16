@@ -6,11 +6,12 @@ export function mapMenusToRouter(userMs: any[]) {
   const allroutes: RouteRecordRaw[] = [];
   const routeFiles = require.context("../router/main", true, /.ts/);
   routeFiles.keys().forEach((key) => {
+    // console.log(key);
     const route = require("../router/main" + key.split(".")[1]);
     allroutes.push(route.default);
   });
   // 2根据菜单获取对应的routes
-  // console.log(userMs);
+  // console.log(userMs);c
   const _recurseGetRoute = (menus: any[]) => {
     for (const menu of menus) {
       // console.log(menu);

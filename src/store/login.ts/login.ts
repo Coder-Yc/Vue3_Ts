@@ -1,5 +1,6 @@
 import { IRootState } from "../index";
 import { Module } from "vuex";
+import Errorroute from '../../router/404/404'
 import {
   accountLogin,
   accountInfo,
@@ -40,6 +41,11 @@ const loginMoudle: Module<IloginState, IRootState> = {
       routes.forEach((route) => {
         router.addRoute("main", route);
       });
+      // console.log(typeof Errorroute);
+      router.addRoute('/',Errorroute)
+      console.log(router.getRoutes());
+
+
     },
   },
   actions: {

@@ -11,7 +11,8 @@ const app = createApp(App);
 // console.log(store);
 
 Rootgloble(app);
+getStoreInfo();
 app.use(router);
 app.use(store);
 app.mount("#app");
-getStoreInfo();
+

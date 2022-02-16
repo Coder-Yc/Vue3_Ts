@@ -39,7 +39,6 @@ export default defineComponent({
             localCatch.delcatch("name", account.name);
             localCatch.delcatch("password", account.password);
           }
-
           store.dispatch("login/accountLoginAction", { ...account });
         }
       });
