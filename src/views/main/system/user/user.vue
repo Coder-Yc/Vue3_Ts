@@ -5,12 +5,23 @@
       :labelWith="labelWith"
       :ItemStyle="ItemStyle"
       :formData="formData"
-    />
+
+    >
+      <template #header>
+        <h2>查找</h2>
+      </template>
+      <template #footer>
+
+           <el-button type="primary" icon="el-icon-search" round>搜索</el-button>
+           <el-button icon="el-icon-refresh" round>重置</el-button>
+
+      </template>
+    </Ycform>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive } from 'vue'
+import { defineComponent, ref } from 'vue'
 import Ycform from '@/baseUi/index'
 import { IFormItem } from '@/baseUi/cpns/types'
 
@@ -58,7 +69,7 @@ export default defineComponent({
     const labelWith = '120px'
     const ItemStyle = { padding: '10px 40px' }
 
-    const formData = reactive({
+    const formData = ref({
       name: '',
       password: '',
       sport: '',

@@ -1,5 +1,8 @@
 <template>
   <div class="form">
+    <div>
+      <slot name="header"></slot>
+    </div>
     <el-form :label-width="labelWith">
       <el-row>
         <template v-for="item of formItems" :key="item.label">
@@ -9,18 +12,18 @@
                 v-if="item.type === 'input' || item.type === 'password'"
               >
                 <el-input
-                  :show-password="item.password"
-                  v-model="formData[`${item.fixed}`]"
+                  :show-password="item.type === 'password'"
+                  v-model="formDataCopy[`${item.fixed}`]"
                 />
               </template>
               <template v-else-if="item.type === 'select'">
                 <el-select
                   style="width: 100%"
                   :placeholder="item.placeholder"
-                  v-model="formData[`${item.fixed}`]"
+                  v-model="formDataCopy[`${item.fixed}`]"
                 >
                   <el-option
-                    v-for="option in item.options"
+                    v-for="option in item.options "
                     :key="option.value"
                     :value="option.value"
                     >{{ option.title }}
@@ -33,7 +36,7 @@
                   :start-placeholder="item.otherOptions.startPlaceholder"
                   :end-placeholder="item.otherOptions.endPlaceholder"
                   :type="item.otherOptions.type"
-                  v-model="formData[`${item.fixed}`]"
+                  v-model="formDataCopy[`${item.fixed}`]"
                 ></el-date-picker>
               </template>
             </el-form-item>
@@ -41,11 +44,14 @@
         </template>
       </el-row>
     </el-form>
+    <div class="footer">
+      <slot name="footer"></slot>
+    </div>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from 'vue'
+import { defineComponent, PropType ,ref, watch } from 'vue'
 import { IFormItem } from './types'
 
 export default defineComponent({
@@ -77,11 +83,12 @@ export default defineComponent({
       })
     }
   },
+  // emits:['update:formData'],
+  setup(props, {emit}) {
+    const formDataCopy = ref({...props.formData})
+    // watch(formDataCopy, (newValue) => emit('update:formData', newValue), {deep: true})
 
-  setup(props) {
-    console.log(props.formData)
-
-    return {}
+    return {formDataCopy}
   }
 })
 </script>
@@ -90,4 +97,9 @@ export default defineComponent({
 .form {
   padding-top: 22px;
 }
+.footer {
+  justify-content: flex-end;
+  display: flex;
+}
 </style>
+
