@@ -5,6 +5,14 @@ export interface IFormItem {
   label: string
   rules?: any[]
   placeholder?: any
-  options?: any[]
+  options: any[]
   otherOptions?: any
 }
+
+export interface IuserListData {
+  prop: string
+  label: string
+  width?: string
+  scopeName: string
+}
+  

@@ -1,3 +1,6 @@
 import YcForm from './cpns/form.vue'
+import YcTable from './cpns/table.vue'
 
-export default YcForm
+export  { YcForm , YcTable}
+
+

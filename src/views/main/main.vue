@@ -56,7 +56,7 @@ export default defineComponent({
   height: calc(100% - 48px);
 }
 .pageInfo {
-  background-color: #fff;
+  // background-color: #fff;
 }
 
 .el-header,

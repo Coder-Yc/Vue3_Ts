@@ -4,10 +4,11 @@ module.exports = {
       'import',
       {
         libraryName: 'element-plus',
-        // libraryDirectory: 'lib',
+        libraryDirectory: 'lib',
         customStyleName: (name) => {
           return `element-plus/lib/theme-chalk/${name}.css`
         }
+        // "styleLibraryName": "theme-chalk"
       }
     ]
   ],

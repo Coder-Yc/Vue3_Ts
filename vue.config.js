@@ -1,5 +1,6 @@
 module.exports = {
   // outputDir: "./build",
+
   lintOnSave: false,
   devServer: {
     proxy: {
@@ -22,5 +23,8 @@ module.exports = {
         utils: '@/utils'
       }
     }
-  }
+  },
+  // css: {
+	// 	requireModuleExtension: true
+	// }
 }

@@ -1,5 +1,4 @@
 import { App } from 'vue'
-import 'element-plus/lib/theme-chalk/base.css'
 import { ElButton } from 'element-plus'
 const components = [ElButton]
 export default function (app: App): void {
@@ -7,4 +6,3 @@ export default function (app: App): void {
     app.component(component.name, component)
   }
 }
- 

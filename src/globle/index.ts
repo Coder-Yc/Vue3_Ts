@@ -1,6 +1,8 @@
 import RegisterElement from "./regist-element";
+import  {registProperties}  from "./regist-properties";
 import { App } from "vue";
 
 export function Rootgloble(app: App): void {
-  RegisterElement(app);
+  app.use(RegisterElement)
+  app.use(registProperties)
 }

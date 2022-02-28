@@ -13,6 +13,7 @@
               >
                 <el-input
                   :show-password="item.type === 'password'"
+                  :placeholder="item.placeholder"
                   v-model="formDataCopy[`${item.fixed}`]"
                 />
               </template>
@@ -62,7 +63,8 @@ export default defineComponent({
     },
     formItems: {
       type: Array as PropType<IFormItem[]>,
-      default: () => []
+      default: () => [],
+      requied: true
     },
     labelWith: {
       type: String,
@@ -96,8 +98,11 @@ export default defineComponent({
 <style scoped>
 .form {
   padding-top: 22px;
+  background-color: #fff;
 }
 .footer {
+  margin: 10px;
+  padding: 10px;
   justify-content: flex-end;
   display: flex;
 }
