@@ -31,7 +31,8 @@ import {
   ElOption,
   ElTable,
   ElTableColumn,
-  ElPagination
+  ElPagination,
+  ElImage
 } from 'element-plus'
 const components = [
   ElButton,
@@ -64,7 +65,8 @@ const components = [
   ElOption,
   ElTable,
   ElTableColumn,
-  ElPagination
+  ElPagination,
+  ElImage,
 ]
 
 export default function (app: App): void {

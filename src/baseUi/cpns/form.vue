@@ -90,7 +90,7 @@ export default defineComponent({
   },
   emits:['update:modelValue'],
   setup(props, {emit}) {
-    console.log(props.formItems);
+    // console.log(props.formItems);
     // const formDataCopy = ref({...props.modelValue})
     // console.log(formDataCopy);
     // watch(formDataCopy,(newValue) => emit('update:modelValue', newValue), {deep: true})

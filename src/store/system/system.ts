@@ -6,9 +6,10 @@ import {Module} from 'vuex'
 interface IuserData {
   usersList: any
   departmentList: any
-  totalList: Number
+  usersListTotal: Number
   roleList:any
   menuList: any
+  goodsList: any
 }
 const userMoudle:Module <IuserData, IRootState>  = {
   namespaced: true,
@@ -18,8 +19,9 @@ const userMoudle:Module <IuserData, IRootState>  = {
       departmentList: [],
       menuList: [],
       roleList: [],
+      goodsList: [],
 
-      totalList: 0
+      usersListTotal: 0
     }
   },
   getters: {
@@ -27,12 +29,17 @@ const userMoudle:Module <IuserData, IRootState>  = {
       return (pageName: string) => {
        return (state as any)[`${pageName}List`]
       }
+    },
+    pageDataTotal(state) {
+      return (pageName: string) => {
+       return (state as any)[`${pageName}ListTotal`]
+      }
     }
   },
   mutations: {
     changeusersList : (state, payload) => {
       state.usersList = payload.list
-      state.totalList = payload.totalCount
+      state.usersListTotal = payload.totalCount
     },
     changedepartmentList: (state, payload) => {
       state.departmentList = payload.list
@@ -43,6 +50,10 @@ const userMoudle:Module <IuserData, IRootState>  = {
     changeroleList: (state, payload) => {
       state.roleList = payload.list
     },
+    changegoodsList:(state, payload) => {
+      state.goodsList = payload.list
+    },
+
 
 
   },
@@ -50,10 +61,8 @@ const userMoudle:Module <IuserData, IRootState>  = {
     async getDataListAction({commit}, payload) {
       const pageName = payload.pageName
       const pagePath = `/${pageName}/list`
-
       const result  = await getDataLists(pagePath, payload.queryInfo)
       console.log(result);
-
 
       commit(`change${pageName}List`, result.data)
     }

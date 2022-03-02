@@ -1,7 +1,7 @@
 <template>
   <div class="user">
-    <find-table :findTableConfig='findTableConfig'></find-table>
-    <page-content :contentTableConfig="contentTableConfig" pageName="users"></page-content>
+    <find-table :findTableConfig='findTableConfig' @searchContent="searchContent" @resetContent='resetContent'></find-table>
+    <page-content :contentTableConfig="contentTableConfig" pageName="users" ref="pageContentRef"></page-content>
   </div>
 </template>
 
@@ -14,6 +14,8 @@ import findTable from '@/components/findTable/find-Table.vue'
 import contentTableConfig from './config/contentTableConfig'
 import findTableConfig from './config/findTableConfig'
 
+import { usePageSearch } from "@/hooks/usePageConten";
+
 
 export default defineComponent({
   name: 'user',
@@ -23,7 +25,9 @@ export default defineComponent({
   },
   setup() {
 
-    return { findTableConfig, contentTableConfig}
+    const [pageContentRef, searchContent, resetContent] = usePageSearch()
+
+    return { findTableConfig, contentTableConfig, pageContentRef, searchContent, resetContent}
   }
 })
 </script>

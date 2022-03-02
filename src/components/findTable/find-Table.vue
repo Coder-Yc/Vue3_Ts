@@ -9,8 +9,8 @@
         <h2>查找</h2>
       </template>
       <template #footer>
-           <el-button type="primary" icon="el-icon-search" round>搜索</el-button>
-           <el-button icon="el-icon-refresh" round @click="cliclClearContent" @formData="formData">重置</el-button>
+           <el-button type="primary" icon="el-icon-search" round @click="clickSearchcontent">搜索</el-button>
+           <el-button icon="el-icon-refresh" round @click="cliclClearContent" >重置</el-button>
       </template>
     </YcForm>
 </template>
@@ -29,24 +29,27 @@ export default defineComponent({
   components: {
       YcForm
   },
-  setup (props) {
+  emits:['resetContent','searchContent'],
+  setup (props, {emit}) {
+
     const result = props.findTableConfig?.formItms ?? []
     const fixedFormData: any = {}
     for(const item of result) {
       fixedFormData[item.fixed] =''
     }
-
-  const modelValue = ref(fixedFormData)
-
-
-  const cliclClearContent = () => {
-    for(const item in modelValue.value) {
-      // modelValue.value[`${item}`] = fixedFormData[item]
-      modelValue.value = fixedFormData
+    const modelValue = ref(fixedFormData)
+    //点击搜索按钮
+    const clickSearchcontent = () => {
+      emit('searchContent', modelValue.value)
     }
+    //点击重置按钮
+    const cliclClearContent = () => {
 
-  }
-    return {cliclClearContent, modelValue}
+        // modelValue.value[`${item}`] = fixedFormData[item]
+      modelValue.value = fixedFormData
+      emit('resetContent')
+    }
+    return {cliclClearContent, modelValue, clickSearchcontent}
   }
 })
 </script>
