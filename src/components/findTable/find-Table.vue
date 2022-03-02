@@ -3,28 +3,26 @@
       :formItems="findTableConfig.formItms"
       :labelWith="findTableConfig.labelWith"
       :ItemStyle="findTableConfig.ItemStyle"
-      :formData="findTableConfig.formData.value"
-
+      v-model="modelValue"
     >
       <template #header>
         <h2>查找</h2>
       </template>
       <template #footer>
            <el-button type="primary" icon="el-icon-search" round>搜索</el-button>
-           <el-button icon="el-icon-refresh" round>重置</el-button>
+           <el-button icon="el-icon-refresh" round @click="cliclClearContent" @formData="formData">重置</el-button>
       </template>
     </YcForm>
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from 'vue'
+import { defineComponent, ref } from 'vue'
 import {YcForm} from '@/baseUi/index'
-import { IFormItem } from '@/baseUi/cpns/types'
 
 export default defineComponent({
   props: {
     findTableConfig: {
-      type: Object as PropType<IFormItem>,
+      type: Object ,
       require: true
     },
   },
@@ -32,10 +30,23 @@ export default defineComponent({
       YcForm
   },
   setup (props) {
+    const result = props.findTableConfig?.formItms ?? []
+    const fixedFormData: any = {}
+    for(const item of result) {
+      fixedFormData[item.fixed] =''
+    }
+
+  const modelValue = ref(fixedFormData)
 
 
+  const cliclClearContent = () => {
+    for(const item in modelValue.value) {
+      // modelValue.value[`${item}`] = fixedFormData[item]
+      modelValue.value = fixedFormData
+    }
 
-    return {}
+  }
+    return {cliclClearContent, modelValue}
   }
 })
 </script>

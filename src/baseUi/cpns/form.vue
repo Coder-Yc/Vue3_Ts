@@ -14,14 +14,16 @@
                 <el-input
                   :show-password="item.type === 'password'"
                   :placeholder="item.placeholder"
-                  v-model="formDataCopy[`${item.fixed}`]"
+                  :model-value="modelValue[`${item.fixed}`]"
+                  @update:modelValue="changeData($event, item.fixed)"
                 />
               </template>
               <template v-else-if="item.type === 'select'">
                 <el-select
                   style="width: 100%"
                   :placeholder="item.placeholder"
-                  v-model="formDataCopy[`${item.fixed}`]"
+                  :model-value="modelValue[`${item.fixed}`]"
+                  @update:modelValue="changeData($event, item.fixed)"
                 >
                   <el-option
                     v-for="option in item.options "
@@ -37,7 +39,8 @@
                   :start-placeholder="item.otherOptions.startPlaceholder"
                   :end-placeholder="item.otherOptions.endPlaceholder"
                   :type="item.otherOptions.type"
-                  v-model="formDataCopy[`${item.fixed}`]"
+                  :model-value="modelValue[`${item.fixed}`]"
+                  @update:model-value="changeData($event, item.fixed)"
                 ></el-date-picker>
               </template>
             </el-form-item>
@@ -57,7 +60,7 @@ import { IFormItem } from './types'
 
 export default defineComponent({
   props: {
-    formData: {
+    modelValue: {
       type: Object,
       required: true
     },
@@ -85,12 +88,18 @@ export default defineComponent({
       })
     }
   },
-  // emits:['update:formData'],
+  emits:['update:modelValue'],
   setup(props, {emit}) {
-    const formDataCopy = ref({...props.formData})
-    // watch(formDataCopy, (newValue) => emit('update:formData', newValue), {deep: true})
+    console.log(props.formItems);
+    // const formDataCopy = ref({...props.modelValue})
+    // console.log(formDataCopy);
+    // watch(formDataCopy,(newValue) => emit('update:modelValue', newValue), {deep: true})
 
-    return {formDataCopy}
+    const changeData = (value:string, key: string) => {
+      emit('update:modelValue', {...props.modelValue , [key]:value})
+    }
+
+    return { changeData}
   }
 })
 </script>
