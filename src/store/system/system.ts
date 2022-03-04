@@ -1,4 +1,4 @@
-import { getDataLists, delData } from "@/servies/system/system";
+import { getDataLists, delData, addUser } from "@/servies/system/system";
 import { IRootState } from "@/store";
 import {Module} from 'vuex'
 
@@ -71,6 +71,11 @@ const userMoudle:Module <IuserData, IRootState>  = {
       const url = `/${pageName}/${id}`
       console.log(url);
       await delData(url)
+    },
+
+    async addButtonAction({commit}, payload) {
+      console.log(payload);
+      await addUser(payload)
     }
   }
 

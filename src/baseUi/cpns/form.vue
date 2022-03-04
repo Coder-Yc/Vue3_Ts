@@ -6,8 +6,12 @@
     <el-form :label-width="findTableConfig.labelWith">
       <el-row>
         <template v-for="item of findTableConfig.formItms" :key="item.label">
-          <el-col v-bind="findTableConfig.spanFixed">
-            <el-form-item :label="item.label" :style="findTableConfig.ItemStyle">
+          <el-col v-bind="spanFixed">
+            <el-form-item
+              :label="item.label"
+              :style="findTableConfig.ItemStyle"
+              v-if="!item.isHidden"
+            >
               <template
                 v-if="item.type === 'input' || item.type === 'password'"
               >

@@ -2,14 +2,9 @@
   <yc-table v-bind="contentTableConfig"
            :dataList="dataList"
            :dataListTotal="dataListTotal"
-           >
+  >
     <template #headerOperation>
       <el-button type="primary" @click="createUserButton">新建用户</el-button>
-      <yc-dialog
-        :modelValue="centerDialogVisible"
-        @update:modelValue="centerDialogVisible = false"
-        :dialogConfig="dialogConfig"
-      ></yc-dialog>
     </template>
     <template #enable="scope">
       <el-button type="success" plain size="small">{{scope.row.enable}}</el-button>
@@ -23,7 +18,7 @@
     <template #operation="scope">
         <div class="opation-button">
           <el-button type="danger" size="small" @click="clickDeleteUser(scope.row)">删除</el-button>
-          <el-button type="info" size="small" @click="updateUserButton">编辑</el-button>
+          <el-button type="info" size="small" @click="updateUserButton(scope.row)">编辑</el-button>
         </div>
     </template>
     <template
@@ -35,21 +30,17 @@
         <slot :name="item.scopeName" :row="scope.row"></slot>
       </template>
     </template>
-
-
   </yc-table>
 </template>
 
 <script lang="ts">
 import { computed, defineComponent,ref} from 'vue'
+
 import { useStore } from "vuex";
 
 import YcTable from "@/baseUi/cpns/table.vue";
 import YcForm from "@/baseUi/cpns/form.vue";
 import YcDialog from "@/components/Ycdialog/dialog.vue";
-
-
-
 
 export default defineComponent({
   props: {
@@ -61,17 +52,14 @@ export default defineComponent({
       type: String,
       require: true
     },
-    dialogConfig: {
-      type: Object,
-      default: {}
-    }
   },
   components: {
     YcTable,
     YcForm,
     YcDialog
   },
-  setup (props) {
+  emits:['update:clickChangeButton', 'update:createChangeButton'],
+  setup (props, {emit}) {
     const store = useStore()
     const getStoreContent = (queryinfo?: any) => {
       store.dispatch('system/getDataListAction',{
@@ -88,11 +76,10 @@ export default defineComponent({
     const dataList = computed(() =>
       store.getters['system/pageDataList'](props.pageName),
     )
-
-
     const dataListTotal = computed(() =>
       store.getters['system/pageDataTotal'](props.pageName),
     )
+
     //扩展插槽
     const restContentConfig = props.contentTableConfig!.propList.filter((item: any) => {
       if(item?.scopeName === 'createAt') return false
@@ -100,26 +87,24 @@ export default defineComponent({
       if(item?.scopeName === 'operation') return false
       return true
     })
-    //弹窗
-    const centerDialogVisible = ref(false)
+
     //删除用户按钮
     const clickDeleteUser = (item: any) => {
       const id =item.id
       const pageName = props.pageName
       store.dispatch('system/delButtonAction',{id, pageName})
     }
-    // 更新用户按钮
+    // 编辑用户按钮
     const updateUserButton = (item: any) => {
-      centerDialogVisible.value = true
-
+      emit('update:clickChangeButton', item)
     }
+
     //新建用户按钮
     const createUserButton = () => {
-      centerDialogVisible.value = true
+      emit('update:createChangeButton')
     }
 
-
-    return {dataList,dataListTotal,getStoreContent, restContentConfig, clickDeleteUser,updateUserButton, createUserButton, centerDialogVisible}
+    return {dataList,dataListTotal,getStoreContent, restContentConfig, clickDeleteUser,updateUserButton, createUserButton}
   }
 })
 </script>

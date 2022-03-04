@@ -1,25 +1,10 @@
-
 const dialogConfig = {
   formItms:[
-    {
-      fixed: 'id',
-      type: 'input',
-      label: 'ID',
-      placeholder: '请输入ID',
-      options: []
-    },
     {
       fixed: 'name',
       type: 'input',
       label: '用户名',
       placeholder: '请输入用户名',
-      options: []
-    },
-    {
-      fixed: 'cellphone',
-      type: 'input',
-      label: '电话号码',
-      placeholder: '请输入电话号码',
       options: []
     },
     {
@@ -29,11 +14,37 @@ const dialogConfig = {
       placeholder: '请输入真实姓名',
       options: []
     },
-
+    {
+      fixed: 'password',
+      type: 'input',
+      label: '密码',
+      placeholder: '请输入密码',
+      options: [],
+      isHidden: true
+    },
+    {
+      fixed: 'cellphone',
+      type: 'input',
+      label: '电话号码',
+      placeholder: '请输入电话号码',
+      options: []
+    },
+    {
+      field: 'departmentId',
+      type: 'select',
+      label: '选择部门',
+      placeholder: '请选择部门',
+      options: []
+    },
+    {
+      field: 'roleId',
+      type: 'select',
+      label: '选择角色',
+      placeholder: '请选择角色',
+      options: []
+    }
     ],
-    labelWith :'120px',
-    ItemStyle : { padding: '10px 40px' },
-    spanFixed: {span: 24}
-
+    labelWith :'70px',
+    ItemStyle : { padding: '10px 50px' },
 }
 export default dialogConfig

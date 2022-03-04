@@ -54,6 +54,5 @@ const findTableConfig = {
     ],
     labelWith :'120px',
     ItemStyle : { padding: '10px 40px' },
-
 }
 export default findTableConfig

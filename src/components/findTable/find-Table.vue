@@ -1,5 +1,5 @@
 <template>
-  <YcForm
+  <yc-form
       :findTableConfig="findTableConfig"
       v-model="modelValue"
     >
@@ -7,10 +7,10 @@
         <h2>查找</h2>
       </template>
       <template #footer>
-           <el-button type="primary" icon="el-icon-search" round @click="clickSearchcontent">搜索</el-button>
-           <el-button icon="el-icon-refresh" round @click="cliclClearContent" >重置</el-button>
+        <el-button type="primary" icon="el-icon-search" round @click="clickSearchcontent">搜索</el-button>
+        <el-button icon="el-icon-refresh" round @click="cliclClearContent" >重置</el-button>
       </template>
-    </YcForm>
+  </yc-form>
 </template>
 
 <script lang="ts">
@@ -42,8 +42,7 @@ export default defineComponent({
     }
     //点击重置按钮
     const cliclClearContent = () => {
-
-        // modelValue.value[`${item}`] = fixedFormData[item]
+      // modelValue.value[`${item}`] = fixedFormData[item]
       modelValue.value = fixedFormData
       emit('resetContent')
     }

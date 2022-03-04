@@ -58,7 +58,7 @@ export default defineComponent({
   setup (props) {
     // const currentPage = ref(10)
 
-    console.log(props.dataList);
+
 
     return {}
   }
