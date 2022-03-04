@@ -1,13 +1,15 @@
 <template>
-  <YcTable :propList="contentTableConfig.propList"
-           :showIndex="contentTableConfig.showIndex"
-           :title="contentTableConfig.title"
+  <yc-table v-bind="contentTableConfig"
            :dataList="dataList"
            :dataListTotal="dataListTotal"
            >
-
     <template #headerOperation>
-      <el-button type="primary">搜索用户</el-button>
+      <el-button type="primary" @click="createUserButton">新建用户</el-button>
+      <yc-dialog
+        :modelValue="centerDialogVisible"
+        @update:modelValue="centerDialogVisible = false"
+        :dialogConfig="dialogConfig"
+      ></yc-dialog>
     </template>
     <template #enable="scope">
       <el-button type="success" plain size="small">{{scope.row.enable}}</el-button>
@@ -18,14 +20,12 @@
     <template #updateAt="scope">
       <strong>{{$filters.formatTime(scope.row.updateAt)}}</strong>
     </template>
-    <template #operation id="opation-button">
+    <template #operation="scope">
         <div class="opation-button">
-          <el-button type="danger" size="small">删除</el-button>
-         <el-button type="info" size="small">编辑</el-button>
-         </div>
+          <el-button type="danger" size="small" @click="clickDeleteUser(scope.row)">删除</el-button>
+          <el-button type="info" size="small" @click="updateUserButton">编辑</el-button>
+        </div>
     </template>
-
-
     <template
       v-for="item in restContentConfig"
       :key="item.prop"
@@ -37,14 +37,19 @@
     </template>
 
 
-  </YcTable>
+  </yc-table>
 </template>
 
 <script lang="ts">
-import { computed, defineComponent } from 'vue'
+import { computed, defineComponent,ref} from 'vue'
 import { useStore } from "vuex";
+
 import YcTable from "@/baseUi/cpns/table.vue";
-import contentTableConfig from '@/views/main/product/goods/config/contentTableConfig';
+import YcForm from "@/baseUi/cpns/form.vue";
+import YcDialog from "@/components/Ycdialog/dialog.vue";
+
+
+
 
 export default defineComponent({
   props: {
@@ -55,10 +60,16 @@ export default defineComponent({
     pageName: {
       type: String,
       require: true
+    },
+    dialogConfig: {
+      type: Object,
+      default: {}
     }
   },
   components: {
-    YcTable
+    YcTable,
+    YcForm,
+    YcDialog
   },
   setup (props) {
     const store = useStore()
@@ -73,23 +84,42 @@ export default defineComponent({
     })
     }
     getStoreContent()
-
     //拿到数据列表
     const dataList = computed(() =>
       store.getters['system/pageDataList'](props.pageName),
     )
+
+
     const dataListTotal = computed(() =>
       store.getters['system/pageDataTotal'](props.pageName),
     )
-
-    const restContentConfig = contentTableConfig.propList.filter((item) => {
+    //扩展插槽
+    const restContentConfig = props.contentTableConfig!.propList.filter((item: any) => {
       if(item?.scopeName === 'createAt') return false
       if(item?.scopeName === 'updateAt') return false
       if(item?.scopeName === 'operation') return false
       return true
     })
+    //弹窗
+    const centerDialogVisible = ref(false)
+    //删除用户按钮
+    const clickDeleteUser = (item: any) => {
+      const id =item.id
+      const pageName = props.pageName
+      store.dispatch('system/delButtonAction',{id, pageName})
+    }
+    // 更新用户按钮
+    const updateUserButton = (item: any) => {
+      centerDialogVisible.value = true
 
-    return {dataList,dataListTotal,getStoreContent, restContentConfig}
+    }
+    //新建用户按钮
+    const createUserButton = () => {
+      centerDialogVisible.value = true
+    }
+
+
+    return {dataList,dataListTotal,getStoreContent, restContentConfig, clickDeleteUser,updateUserButton, createUserButton, centerDialogVisible}
   }
 })
 </script>

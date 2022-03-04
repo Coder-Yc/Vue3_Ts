@@ -1,11 +1,25 @@
-import { ref } from "vue";
+
 const findTableConfig = {
   formItms:[
+    {
+        fixed: 'id',
+        type: 'input',
+        label: 'ID',
+        placeholder: '请输入ID',
+        options: []
+      },
       {
         fixed: 'name',
         type: 'input',
         label: '用户名',
         placeholder: '请输入用户名',
+        options: []
+      },
+      {
+        fixed: 'cellphone',
+        type: 'input',
+        label: '电话号码',
+        placeholder: '请输入电话号码',
         options: []
       },
       {

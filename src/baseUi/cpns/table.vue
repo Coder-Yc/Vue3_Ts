@@ -6,7 +6,7 @@
         <slot name="headerOperation" class="headerOperation"></slot>
       </slot>
     </div>
-    <el-table :data="dataList" border style="width: 100%" >
+    <el-table :data="dataList" border style="width: 100%" v-bind="childrenProps">
       <el-table-column v-if="showIndex" type="index" label="序号" width="50" ></el-table-column>
       <template v-for="propitem in propList" :key="propitem" >
         <el-table-column show-overflow-tooltip  v-bind="propitem" align="center">
@@ -15,14 +15,11 @@
               {{scope.row[propitem.prop]}}
             </slot>
           </template>
-
         </el-table-column>
       </template>
     </el-table>
     <div class="pagination">
       <slot name="pagination">
-
-
       </slot>
     </div>
   </div>
@@ -34,7 +31,7 @@ import { IuserListData } from './types'
 export default defineComponent({
   props: {
     dataList: {
-      type: Array,
+      type: Object,
       required: true
     },
     dataListTotal: {
@@ -52,10 +49,17 @@ export default defineComponent({
     title: {
       type: String,
       requied: true
+    },
+    childrenProps: {
+      type: Object,
+      default: () => {}
     }
   },
-  setup () {
+  setup (props) {
     // const currentPage = ref(10)
+
+    console.log(props.dataList);
+
     return {}
   }
 })

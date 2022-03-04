@@ -3,11 +3,11 @@
     <div>
       <slot name="header"></slot>
     </div>
-    <el-form :label-width="labelWith">
+    <el-form :label-width="findTableConfig.labelWith">
       <el-row>
-        <template v-for="item of formItems" :key="item.label">
-          <el-col v-bind="spanFixed">
-            <el-form-item :label="item.label" :style="itemStyle">
+        <template v-for="item of findTableConfig.formItms" :key="item.label">
+          <el-col v-bind="findTableConfig.spanFixed">
+            <el-form-item :label="item.label" :style="findTableConfig.ItemStyle">
               <template
                 v-if="item.type === 'input' || item.type === 'password'"
               >
@@ -55,8 +55,9 @@
 </template>
 
 <script lang="ts">
+
 import { defineComponent, PropType ,ref, watch } from 'vue'
-import { IFormItem } from './types'
+
 
 export default defineComponent({
   props: {
@@ -64,18 +65,9 @@ export default defineComponent({
       type: Object,
       required: true
     },
-    formItems: {
-      type: Array as PropType<IFormItem[]>,
-      default: () => [],
-      requied: true
-    },
-    labelWith: {
-      type: String,
-      default: '100px'
-    },
-    itemStyle: {
+    findTableConfig: {
       type: Object,
-      default: { padding: '10px 40px' }
+      require: true
     },
     spanFixed: {
       type: Object,
@@ -94,6 +86,7 @@ export default defineComponent({
     // const formDataCopy = ref({...props.modelValue})
     // console.log(formDataCopy);
     // watch(formDataCopy,(newValue) => emit('update:modelValue', newValue), {deep: true})
+
 
     const changeData = (value:string, key: string) => {
       emit('update:modelValue', {...props.modelValue , [key]:value})

@@ -1,4 +1,4 @@
-import { getDataLists } from "@/servies/system/system";
+import { getDataLists, delData } from "@/servies/system/system";
 import { IRootState } from "@/store";
 import {Module} from 'vuex'
 
@@ -62,9 +62,15 @@ const userMoudle:Module <IuserData, IRootState>  = {
       const pageName = payload.pageName
       const pagePath = `/${pageName}/list`
       const result  = await getDataLists(pagePath, payload.queryInfo)
-      console.log(result);
-
+      // console.log(result.data);
       commit(`change${pageName}List`, result.data)
+    },
+
+    async delButtonAction({commit}, payload) {
+      const {id, pageName} = payload
+      const url = `/${pageName}/${id}`
+      console.log(url);
+      await delData(url)
     }
   }
 

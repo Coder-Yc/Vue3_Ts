@@ -1,8 +1,6 @@
 <template>
   <YcForm
-      :formItems="findTableConfig.formItms"
-      :labelWith="findTableConfig.labelWith"
-      :ItemStyle="findTableConfig.ItemStyle"
+      :findTableConfig="findTableConfig"
       v-model="modelValue"
     >
       <template #header>

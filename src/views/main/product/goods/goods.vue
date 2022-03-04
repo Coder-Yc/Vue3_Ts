@@ -4,7 +4,7 @@
     <template #image="scope">
       <el-image
         :src="scope.row.imgUrl"
-        :fit="fill"
+        fit="fill"
         style="width: 60px; height: 60px"
         :preview-src-list="[scope.row.imgUrl]"
         lazy

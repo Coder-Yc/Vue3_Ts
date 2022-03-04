@@ -11,3 +11,10 @@ export function getDataLists(url: string, queryInfo: object) {
     data: queryInfo
   })
 }
+
+
+export function delData(url: string) {
+  return ycrequest.delete<IdDataType>({
+    url: url,
+  })
+}
