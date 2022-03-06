@@ -24,7 +24,7 @@ export default defineComponent({
     const store = useStore();
     const account = reactive({
       name: localCatch.getcatch("name") ?? "",
-      password: localCatch.getcatch("password") ?? "",
+      password: localCatch.getcatch("password") ?? "", 
     });
     const loginRef = ref<InstanceType<typeof ElForm>>();
 

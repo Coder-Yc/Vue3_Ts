@@ -1,4 +1,4 @@
-import { getDataLists, delData, addUser } from "@/servies/system/system";
+import { getDataLists, delData, addUser, dispatchUser } from "@/servies/system/system";
 import { IRootState } from "@/store";
 import {Module} from 'vuex'
 
@@ -20,7 +20,6 @@ const userMoudle:Module <IuserData, IRootState>  = {
       menuList: [],
       roleList: [],
       goodsList: [],
-
       usersListTotal: 0
     }
   },
@@ -54,10 +53,9 @@ const userMoudle:Module <IuserData, IRootState>  = {
       state.goodsList = payload.list
     },
 
-
-
   },
   actions: {
+    //得到用户列表
     async getDataListAction({commit}, payload) {
       const pageName = payload.pageName
       const pagePath = `/${pageName}/list`
@@ -65,17 +63,45 @@ const userMoudle:Module <IuserData, IRootState>  = {
       // console.log(result.data);
       commit(`change${pageName}List`, result.data)
     },
-
+    //删除用户
     async delButtonAction({commit}, payload) {
       const {id, pageName} = payload
       const url = `/${pageName}/${id}`
-      console.log(url);
       await delData(url)
+      this.dispatch('system/getDataListAction', {
+          pageName: 'users',
+          offset: 0,
+          size: 10,
+      })
     },
-
+    //添加用户
     async addButtonAction({commit}, payload) {
-      console.log(payload);
-      await addUser(payload)
+      const url = 'users'
+      const result = await addUser(url, payload.value)
+      if (result.code === 0) {
+        this.dispatch('system/getDataListAction', {
+          pageName: 'users',
+          offset: 0,
+          size: 10,
+        })
+      }
+    },
+    //修改用户
+    async changeButtonAction({commit}, payload) {
+      const pageName = 'users'
+      const url = `/${pageName}/${payload.value.id}`
+      const result = await dispatchUser(url, {
+        "cellphone": payload.value.cellphone,
+      })
+      if (result.code === 0) {
+      this.dispatch('system/getDataListAction', {
+        pageName: 'users',
+        offset: 0,
+        size: 10,
+      })
+      }
+
+
     }
   }
 

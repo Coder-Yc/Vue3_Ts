@@ -28,6 +28,7 @@
                   :placeholder="item.placeholder"
                   :model-value="modelValue[`${item.fixed}`]"
                   @update:modelValue="changeData($event, item.fixed)"
+
                 >
                   <el-option
                     v-for="option in item.options "
@@ -60,7 +61,7 @@
 
 <script lang="ts">
 
-import { defineComponent, PropType ,ref, watch } from 'vue'
+import { defineComponent} from 'vue'
 
 
 export default defineComponent({

@@ -19,9 +19,30 @@ export function delData(url: string) {
   })
 }
 //添加用户
-export function addUser(queryInfo: object) {
+export function addUser(url:string, queryInfo: object) {
   return ycrequest.post<IdDataType>({
-    url: '/users',
+    url: url,
+    data: queryInfo
+  })
+}
+//修改用户
+export function dispatchUser(url:string, queryInfo: object) {
+  return ycrequest.patch<IdDataType>({
+    url: url,
+    data: queryInfo
+  })
+}
+//获取角色列表
+export function getrolesList(url: string, queryInfo: object) {
+  return ycrequest.post<IdDataType>({
+    url: url,
+    data: queryInfo
+  })
+}
+//获取部门列表
+export function getdepartmentList(url: string, queryInfo: object) {
+  return ycrequest.post<IdDataType>({
+    url: url,
     data: queryInfo
   })
 }

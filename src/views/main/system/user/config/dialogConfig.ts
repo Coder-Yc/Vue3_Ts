@@ -30,21 +30,24 @@ const dialogConfig = {
       options: []
     },
     {
-      field: 'departmentId',
+      fixed: 'departmentId',
       type: 'select',
       label: '选择部门',
       placeholder: '请选择部门',
-      options: []
+      options: [] as any,
+
     },
     {
-      field: 'roleId',
+      fixed: 'roleId',
       type: 'select',
       label: '选择角色',
       placeholder: '请选择角色',
-      options: []
+      options: [] as any,
+
     }
     ],
-    labelWith :'70px',
-    ItemStyle : { padding: '10px 50px' },
+  labelWith :'70px',
+  ItemStyle : { padding: '10px 50px' },
+  title: '编辑',
 }
 export default dialogConfig

@@ -12,6 +12,7 @@
     "coderwhy": "^1.1.4",
     "core-js": "^3.6.5",
     "dayjs": "^1.10.7",
+    "echarts": "^5.3.0",
     "element-plus": "^1.0.2-beta.63",
     "normalize.css": "^8.0.1",
     "ts-loader": "^9.2.6",
