@@ -16,4 +16,14 @@ npm run build
 ```
 npm run lint
 ```
+![Image text](https://github.com/Coder-Yc/Vue3_Ts/blob/main/images/Snipaste_2022-06-15_13-01-39.png)
+![Image text](https://github.com/Coder-Yc/Vue3_Ts/blob/main/images/Snipaste_2022-06-15_13-02-13.png)
+![Image text](https://github.com/Coder-Yc/Vue3_Ts/blob/main/images/Snipaste_2022-06-15_13-02-28.png)
+![Image text](https://github.com/Coder-Yc/Vue3_Ts/blob/main/images/Snipaste_2022-06-15_13-03-00.png)
+![Image text](https://github.com/Coder-Yc/Vue3_Ts/blob/main/images/Snipaste_2022-06-15_13-03-14.png)
+![Image text](https://github.com/Coder-Yc/Vue3_Ts/blob/main/images/Snipaste_2022-06-15_13-03-25.png)
+![Image text](https://github.com/Coder-Yc/Vue3_Ts/blob/main/images/Snipaste_2022-06-15_13-03-38.png)
+![Image text](https://github.com/Coder-Yc/Vue3_Ts/blob/main/images/Snipaste_2022-06-15_13-07-10.png)
+![Image text](https://github.com/Coder-Yc/Vue3_Ts/blob/main/images/Snipaste_2022-06-15_13-07-26.png)
+![Image text](https://github.com/Coder-Yc/Vue3_Ts/blob/main/images/Snipaste_2022-06-15_13-08-30.png)
 
