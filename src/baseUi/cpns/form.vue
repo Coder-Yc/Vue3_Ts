@@ -13,8 +13,8 @@
               v-if="!item.isHidden"
             >
               <template
-                v-if="item.type === 'input' || item.type === 'password'"
-              >
+                  v-if="item.type === 'input' || item.type === 'password'"
+                >
                 <el-input
                   :show-password="item.type === 'password'"
                   :placeholder="item.placeholder"

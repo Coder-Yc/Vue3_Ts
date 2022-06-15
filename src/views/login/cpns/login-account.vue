@@ -12,41 +12,41 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, ref } from "vue";
-import { rules } from "../config/account-config";
-import { ElForm } from "element-plus";
-import { useStore } from "vuex";
-import localCatch from "../../../utils/cache";
+import { defineComponent, reactive, ref } from 'vue'
+import { rules } from '../config/account-config'
+import { ElForm } from 'element-plus'
+import { useStore } from 'vuex'
+import localCatch from '../../../utils/cache'
 
 export default defineComponent({
   setup() {
     //定义属性
-    const store = useStore();
+    const store = useStore()
     const account = reactive({
-      name: localCatch.getcatch("name") ?? "",
-      password: localCatch.getcatch("password") ?? "", 
-    });
-    const loginRef = ref<InstanceType<typeof ElForm>>();
+      name: localCatch.getcatch('name') ?? '',
+      password: localCatch.getcatch('password') ?? ''
+    })
+    const loginRef = ref<InstanceType<typeof ElForm>>()
 
     //定义方法
     const loginLog = (isKeepPassword: boolean) => {
       loginRef.value?.validate((valid) => {
         if (valid) {
           if (isKeepPassword) {
-            localCatch.setcatch("name", account.name);
-            localCatch.setcatch("password", account.password);
+            localCatch.setcatch('name', account.name)
+            localCatch.setcatch('password', account.password)
           } else {
-            localCatch.delcatch("name", account.name);
-            localCatch.delcatch("password", account.password);
+            localCatch.delcatch('name', account.name)
+            localCatch.delcatch('password', account.password)
           }
-          store.dispatch("login/accountLoginAction", { ...account });
+          store.dispatch('login/accountLoginAction', { ...account })
         }
-      });
-    };
+      })
+    }
 
-    return { account, rules, loginLog, loginRef };
-  },
-});
+    return { account, rules, loginLog, loginRef }
+  }
+})
 </script>
 
 <style scoped>

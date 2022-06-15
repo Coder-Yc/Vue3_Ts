@@ -6,5 +6,4 @@ export function registProperties(app:App): void{
       return formatUtcString(value)
     }
   }
-
-} 
+}

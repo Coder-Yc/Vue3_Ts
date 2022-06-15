@@ -36,23 +36,23 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from "vue";
-import loginAccount from "./login-account.vue";
-import loginPhone from "./login-phone.vue";
+import { defineComponent, ref } from 'vue'
+import loginAccount from './login-account.vue'
+import loginPhone from './login-phone.vue'
 
 export default defineComponent({
   components: {
     loginAccount,
-    loginPhone,
+    loginPhone
   },
   setup() {
     //定义属性
-    const isKeepPassword = ref(false);
-    const accountRef = ref<InstanceType<typeof loginAccount>>();
-    const phoneRef = ref<InstanceType<typeof loginPhone>>();
-    const currentname = ref<string>("account");
+    const isKeepPassword = ref(false)
+    const accountRef = ref<InstanceType<typeof loginAccount>>()
+    const phoneRef = ref<InstanceType<typeof loginPhone>>()
+    const currentname = ref<string>('account')
 
-    //定义方法
+
     const loginButton = () => {
       if (currentname.value === "account") {
         accountRef.value?.loginLog(isKeepPassword.value);
@@ -61,9 +61,9 @@ export default defineComponent({
       }
     };
 
-    return { isKeepPassword, loginButton, accountRef, phoneRef, currentname };
-  },
-});
+    return { isKeepPassword, loginButton, accountRef, phoneRef, currentname }
+  }
+})
 </script>
 
 <style scoped>
